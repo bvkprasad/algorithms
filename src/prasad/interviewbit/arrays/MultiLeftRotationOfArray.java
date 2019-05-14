@@ -6,26 +6,29 @@ import java.util.Arrays;
 public class MultiLeftRotationOfArray {
 
 	public ArrayList<ArrayList<Integer>> solve(ArrayList<Integer> A, ArrayList<Integer> B) {
-		ArrayList<ArrayList<Integer>> main = new ArrayList<ArrayList<Integer>>(B.size());
-		for (int i = 0; i < B.size(); i++) {
-			ArrayList<Integer> inner = new ArrayList<Integer>(A.size());
-			int p = B.get(i);
-			while (p >= A.size()) {
-				p = p - A.size();
-			}
-			int n = p;
-			for (int j = 0; j < n; j++) {
-				if (p < A.size()) {
-					inner.add(A.get(p++));
-					j--;
-				} else {
-					inner.add(A.get(j));
-				}
-			}
-			main.add(inner);
-		}
-		return main;
-	}
+        ArrayList<ArrayList<Integer>> main = new ArrayList<ArrayList<Integer>>(B.size());
+        for (int i = 0; i < B.size(); i++) {
+            ArrayList<Integer> inner = new ArrayList<Integer>(A);
+            int p = B.get(i);
+            while(p >= A.size()){
+                p = p%A.size();
+            }
+            if(p < A.size()/2){
+                for (int j = 0; j < p; j++) {
+                    inner.add(A.get(j));
+                    inner.remove(0);
+                }
+            }else{
+                int j = A.size()-1;
+                while(j >= p) {
+                    inner.add(0,A.get(j--));
+                    inner.remove(inner.size()-1);
+                }
+            }
+        main.add(inner);
+        }
+        return main;
+    }
 
 	public static void main(String[] args) {
 		/*
