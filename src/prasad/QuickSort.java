@@ -1,14 +1,20 @@
 package prasad;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class QuickSort {
 
 	public static void main(String[] args) {
 		List<Integer> a = Arrays.asList(new Integer[] {6,7,4,5,8,2,1});
-		System.out.println(a);
-		threeWayQuickSort(a, 0, a.size() - 1);
+		long t1 = System.currentTimeMillis();
+		System.out.println(t1);
+		Collections.sort(a);
+		//threeWayQuickSort(a, 0, a.size() - 1);
+		long t2 = System.currentTimeMillis();
+		System.out.println(t2);
+		System.out.println(t2-t1);
 		System.out.println(a);
 	}
 
